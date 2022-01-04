@@ -1,12 +1,12 @@
 <?php
-namespace Console\Command;
+namespace App\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Console\Command;
+use App\Console\Command\Helper\TimeCommandHelper;
 
-class TimeCommand extends Command
+class TimeCommand extends TimeCommandHelper
 {
 
     public function configure()
