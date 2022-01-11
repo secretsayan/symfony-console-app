@@ -35,6 +35,9 @@ class CreateUserCommand extends Command {
 
   protected function execute(InputInterface $input, OutputInterface $output): int
   {
+    $section = $output->section();
+
+    $section->writeln("This is the top section");
     // outputs multiple lines to the console (adding "\n" at the end of each line)
     $output->writeln([
       'User Creator',
