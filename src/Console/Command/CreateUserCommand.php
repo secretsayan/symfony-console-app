@@ -1,6 +1,7 @@
 <?php
 namespace App\Console\Command;
 
+use App\Options\CreateUserOptionsFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,10 +11,17 @@ class CreateUserCommand extends Command {
 
   protected static $defaultName = 'app:create-user';
 
-  private $userName;
+  /**
+   * @var \App\Options\CreateUserOptionsFactory
+   */
+  private $createUserOptionsFactory;
 
-  public function __construct(string $userName = NULL) {
-    $this->userName = $userName;
+  /**
+   * @param \App\Options\CreateUserOptionsFactory $createUserOptionsFactory
+   */
+  public function __construct(CreateUserOptionsFactory $createUserOptionsFactory) {
+    //$this->userName = $userName;
+    $this->createUserOptionsFactory = $createUserOptionsFactory;
     parent::__construct();
   }
 
@@ -45,21 +53,31 @@ class CreateUserCommand extends Command {
       '',
     ]);
 
+    // Check the options
+    $options = $this->createUserOptionsFactory->create([
+      'username' => $input->getArgument('username'),
+      'password' => $input->getArgument('password'),
+      'email' => $input->getArgument('email')
+    ]);
+
+    // @todo Create user in back end
+
     // the value returned by someMethod() can be an iterator (https://secure.php.net/iterator)
     // that generates and returns the messages with the 'yield' PHP keyword
     //$output->writeln($this->someMethod());
 
     // outputs a message followed by a "\n"
-    $output->writeln('Whoa!');
+    $output->writeln('Data verifed ! User creation Process Initiated successful!!');
 
-    // outputs a message without adding a "\n" at the end of the line
+/*    // outputs a message without adding a "\n" at the end of the line
     $output->write('You are about to create user '
-      . $input->getArgument('username')
+      . $options['username']
       . ' with password '
-      . $input->getArgument('password')
+      . $options['password']
       . ' and with email '
-      . $input->getArgument('email')
-    );
+      . $options['email']
+    );*/
+
 
 
     return Command::SUCCESS;

@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class TimeCommandHelper
 {
 
-    protected function greetUser(InputInterface $input, OutputInterface $output)
+    public function greetUser(InputInterface $input, OutputInterface $output)
     {
         // outputs multiple lines to the console (adding "\n" at the end of each line)
         $output -> writeln([

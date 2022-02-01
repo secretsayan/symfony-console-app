@@ -4,14 +4,24 @@
     "symfony/config": "^5.4",
     "symfony/http-kernel": "^5.4",
     "symfony/yaml": "^5.4",
-    "symfony/dependency-injection": "^5.4"
+    "symfony/dependency-injection": "^5.4",
+    "symfony/options-resolver": "^5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
   },
   "autoload": {
     "psr-4": {
       "App\\": "src/"
     },
+    "autoload-dev": {
+      "psr-4": {
+        "App\\Tests\\": "tests/"
+      }
+    },
     "classmap": [
-      "src"
+      "src",
+      "tests"
     ]
   }
 }

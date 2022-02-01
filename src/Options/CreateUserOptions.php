@@ -2,6 +2,7 @@
 
 namespace App\Options;
 
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -14,25 +15,65 @@ class CreateUserOptions {
    *
    * @var array
    */
-  private $options;
+  private array $options;
 
-  public function __construct(array $options){
+  public function __construct(array $options) {
     $this->resolve($options);
   }
 
-  private function resolve(array $options) : void {
+  private function resolve(array $options): void {
 
     $this->options = (new OptionsResolver())
       // Set Defined
-      ->setDefined([])
+      ->setDefined([
+        'username',
+        'password',
+        'email',
+      ])
       // Set Required
-      ->setRequired([])
+      ->setRequired([
+        'username',
+        'password',
+        'email',
+      ])
       // Set allowed types
-      ->setAllowedTypes()
+      ->setAllowedTypes('username', 'string')
+      ->setAllowedTypes('password', 'string')
+      ->setAllowedTypes('email', 'string')
       // Set allowed values
-      ->setAllowedValues()
+      ->setAllowedValues('username', $this->isValidUsername())
+      ->setAllowedValues('password', $this->isValidPassword())
+      ->setAllowedValues('email', $this->isValidEmail())
       // Resolve
       ->resolve($options);
 
   }
+
+  /**
+   * @return bool
+   */
+  private function isValidUsername(): \Closure {
+    return static function($value): bool{
+      return TRUE;
+    };
+  }
+
+  /**
+   * @return bool
+   */
+  private function isValidPassword(): \Closure {
+    return static function($value): bool{
+      return TRUE;
+    };
+  }
+
+  /**
+   * @return bool
+   */
+  private function isValidEmail(): \Closure {
+    return static function($value): bool{
+      return TRUE;
+    };
+  }
+
 }
