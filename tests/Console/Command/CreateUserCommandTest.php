@@ -24,9 +24,10 @@ class CreateUserCommandTest extends CommandTestBase {
   }
 
   /**
-   * Tests basic configurations of the command.
+   * @covers ::__construct
+   * @covers ::configure
    */
-  protected function testBasicConfiguration(): void {
+  public function testBasicConfiguration(): void {
     // Load command
     $command = $this->createCommand();
 
@@ -35,7 +36,7 @@ class CreateUserCommandTest extends CommandTestBase {
     $options = $definitions->getOptions();
 
     self::assertEquals("app:create-user", $command->getName(), "Set correct name");
-    self::assertEquals(["init"], $command->getAliases(), "Set correct aliases");
+    self::assertEquals(["uc"], $command->getAliases(), "Set correct aliases");
     self::assertNotEmpty($command->getDescription(), "Set a description");
     self::assertEquals(['username', 'password', 'email'], array_keys($arguments), "Set correct arguments");
     self::assertEquals([], array_keys($options), "Set correct options");
