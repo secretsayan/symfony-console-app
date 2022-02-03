@@ -21,6 +21,9 @@ class CreateUserOptions {
     $this->resolve($options);
   }
 
+    /**
+     * @param array $options
+     */
   private function resolve(array $options): void {
 
     $this->options = (new OptionsResolver())
